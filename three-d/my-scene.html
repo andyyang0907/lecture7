@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>星球宇宙</title>
+  <script src="libs/aframe.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <!-- 环境：深空背景 -->
+    <a-sky color="#000010"></a-sky>
+
+    <!-- 主体：太阳（中心天体，带脉动动画） -->
+    <a-sphere position="0 0 0" radius="0.6" color="#ffaa00"
+              animation="property: scale; to: 1.1 1.1 1.1; dir: alternate; dur: 1500; loop: true">
+    </a-sphere>
+
+    <!-- 地月系统：地球绕太阳公转，月球绕地球公转（嵌套 entity） -->
+    <a-entity position="0 0 0" animation="property: rotation; to: 0 360 0; dur: 12000; loop: true">
+      <a-sphere position="3 0 0" radius="0.35" color="#4fc3f7"></a-sphere>
+      <a-entity position="3 0 0" animation="property: rotation; to: 0 360 0; dur: 3000; loop: true">
+        <a-sphere position="0.8 0 0" radius="0.1" color="#cccccc"></a-sphere>
+      </a-entity>
+    </a-entity>
+
+    <!-- 火星（绕太阳反向公转） -->
+    <a-entity position="0 0 0" animation="property: rotation; to: 0 -360 0; dur: 20000; loop: true">
+      <a-sphere position="5 0 0" radius="0.3" color="#ef5350"></a-sphere>
+    </a-entity>
+
+    <!-- 土星（带光环的横躺圆柱，圆柱默认就是"填料盘"形状，无需 rotation） -->
+    <a-entity position="0 0 0" animation="property: rotation; to: 0 360 0; dur: 35000; loop: true">
+      <a-sphere position="7 0 0" radius="0.4" color="#ffd54f"></a-sphere>
+      <a-cylinder position="7 0 0" radius="0.7" height="0.03" color="#bdbdbd"></a-cylinder>
+    </a-entity>
+
+    <!-- 小行星（独立球体，自转） -->
+    <a-sphere position="-4 1.5 -2" radius="0.2" color="#888888"
+              animation="property: rotation; to: 360 720 180; dur: 5000; loop: true">
+    </a-sphere>
+
+    <!-- 卫星（独立球体，自转） -->
+    <a-sphere position="-2 3 4" radius="0.15" color="#7e57c2"
+              animation="property: rotation; to: 360 720 180; dur: 4000; loop: true">
+    </a-sphere>
+
+    <!-- 光源：太阳点光 + 环境光 -->
+    <a-light type="point" position="0 0 0" color="#ffaa00" intensity="1.5"></a-light>
+    <a-light type="ambient" color="#ffffff" intensity="0.3"></a-light>
+
+    <!-- 相机：稍远处俯视太阳系 -->
+    <a-camera position="0 6 12"></a-camera>
+  </a-scene>
+</body>
+</html>
